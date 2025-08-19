@@ -1,19 +1,29 @@
 from rest_framework import serializers
 from .models import Project
+from django.conf import settings
+import logging
+
+logger = logging.getLogger(__name__)
 
 
 class ProjectSerializer(serializers.ModelSerializer):
     """Serializer for Project model"""
     
     technology_list = serializers.ReadOnlyField()
-    image = serializers.SerializerMethodField()  # Change this line
+    image = serializers.SerializerMethodField()
     
     def get_image(self, obj):
-        """Return full image URL"""
         if obj.image:
+            # Debug logging
+            logger.info(f"USE_CLOUDINARY setting: {getattr(settings, 'USE_CLOUDINARY', 'NOT SET')}")
+            logger.info(f"DEFAULT_FILE_STORAGE: {getattr(settings, 'DEFAULT_FILE_STORAGE', 'NOT SET')}")
+            logger.info(f"Raw image.url: {obj.image.url}")
+            
             request = self.context.get('request')
             if request:
-                return request.build_absolute_uri(obj.image.url)
+                full_url = request.build_absolute_uri(obj.image.url)
+                logger.info(f"Full URL: {full_url}")
+                return full_url
             return obj.image.url
         return None
     
@@ -41,10 +51,9 @@ class ProjectListSerializer(serializers.ModelSerializer):
     """Lightweight serializer for project lists"""
     
     technology_list = serializers.ReadOnlyField()
-    image = serializers.SerializerMethodField()  # Change this line
+    image = serializers.SerializerMethodField()
     
     def get_image(self, obj):
-        """Return full image URL"""
         if obj.image:
             request = self.context.get('request')
             if request:
