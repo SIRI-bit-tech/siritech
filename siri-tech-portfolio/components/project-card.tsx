@@ -50,16 +50,34 @@ export default function ProjectCard({
     setIsModalOpen(true)
   }
 
+  // Check if image exists and is not empty
+  const hasValidImage = image && image.trim() !== ""
+  
+  // Fix relative image paths by adding backend URL
+  const getImageUrl = (imagePath: string) => {
+    if (imagePath.startsWith('http')) {
+      return imagePath // Already absolute URL
+    }
+    // Assuming your backend runs on localhost:8000 (adjust as needed)
+    const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL || 'http://localhost:8000'
+    return `${backendUrl}${imagePath}`
+  }
+
   return (
     <>
       <Card className="group hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
-        {image && (
+        {hasValidImage && (
           <div className="relative h-48 overflow-hidden rounded-t-lg">
             <Image
-              src={image || "/placeholder.svg?height=200&width=400&query=project screenshot"}
+              src={getImageUrl(image)}
               alt={title}
               fill
               className="object-cover group-hover:scale-105 transition-transform duration-300"
+              onError={(e) => {
+                console.error(`Failed to load image: ${image}`)
+                // Optionally hide the image container on error
+                e.currentTarget.style.display = 'none'
+              }}
             />
             {featured && <Badge className="absolute top-2 right-2 bg-accent text-accent-foreground">Featured</Badge>}
           </div>
