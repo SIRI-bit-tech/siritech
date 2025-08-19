@@ -26,19 +26,19 @@ const contactInfo = [
   {
     icon: Mail,
     title: "Email",
-    value: "hello@siritech.dev",
-    href: "mailto:hello@siritech.dev",
+    value: "siritech001@gmail.com",
+    href: "mailto:siritech001@gmail.com",
   },
   {
     icon: Phone,
     title: "Phone",
-    value: "+1 (555) 123-4567",
-    href: "tel:+15551234567",
+    value: "+234 807 230 7541",
+    href: "tel:+2348072307541",
   },
   {
     icon: MapPin,
     title: "Location",
-    value: "San Francisco, CA",
+    value: "Delta State, Nigeria",
     href: null,
   },
   {

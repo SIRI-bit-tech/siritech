@@ -52,18 +52,18 @@ export default function Footer() {
             <ul className="space-y-2">
               <li className="flex items-center space-x-2 text-muted-foreground">
                 <Mail className="h-4 w-4" />
-                <span>hello@siritech.dev</span>
+                <span>siritech001@gmail.com</span>
               </li>
               <li className="flex items-center space-x-2 text-muted-foreground">
                 <Phone className="h-4 w-4" />
-                <span>+1 (555) 123-4567</span>
+                <span>+234 (807) 230 7541</span>
               </li>
             </ul>
 
             {/* Social Links */}
             <div className="flex space-x-4 mt-4">
               <a
-                href="https://github.com/siritech"
+                href="https://github.com/SIRI-bit-tech"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-muted-foreground hover:text-primary transition-colors"
@@ -72,7 +72,7 @@ export default function Footer() {
                 <Github className="h-5 w-5" />
               </a>
               <a
-                href="https://linkedin.com/in/siritech"
+                href="https://www.linkedin.com/in/emuesiri-onovwiona-b9ab99220/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-muted-foreground hover:text-primary transition-colors"

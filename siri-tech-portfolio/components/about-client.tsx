@@ -14,51 +14,51 @@ gsap.registerPlugin(ScrollTrigger)
 
 const experiences = [
   {
-    title: "Senior Full-Stack Developer",
-    company: "Tech Innovations Inc.",
+    title: "Full-Stack Developer",
+    company: "Freelance & Personal Projects",
     period: "2022 - Present",
     description:
-      "Leading development of scalable web applications using React, Next.js, and Django. Mentoring junior developers and architecting cloud-native solutions.",
-    technologies: ["React", "Next.js", "Django", "AWS", "PostgreSQL"],
-  },
-  {
-    title: "Full-Stack Developer",
-    company: "Digital Solutions Co.",
-    period: "2020 - 2022",
-    description:
-      "Developed and maintained multiple client projects, focusing on performance optimization and user experience improvements.",
-    technologies: ["React", "Node.js", "MongoDB", "Express"],
+      "Developing modern web applications using React, Next.js, and Django. Building scalable solutions and continuously learning new technologies through hands-on projects.",
+    technologies: ["React", "Next.js", "Django", "PostgreSQL", "Tailwind CSS"],
   },
   {
     title: "Frontend Developer",
-    company: "Creative Web Studio",
-    period: "2018 - 2020",
+    company: "Personal Learning Journey",
+    period: "2021 - 2022",
     description:
-      "Specialized in creating responsive, accessible web interfaces with modern JavaScript frameworks and CSS preprocessors.",
-    technologies: ["JavaScript", "Vue.js", "SASS", "Webpack"],
+      "Started web development journey by mastering HTML, CSS, JavaScript and modern frameworks. Built various projects to solidify understanding of core concepts.",
+    technologies: ["HTML", "CSS", "JavaScript", "React", "Git"],
+  },
+  {
+    title: "Self-Taught Developer",
+    company: "Independent Study",
+    period: "2020 - 2021",
+    description:
+      "Began coding journey through online courses, tutorials, and documentation. Focused on building a strong foundation in programming fundamentals.",
+    technologies: ["JavaScript", "Python", "HTML/CSS", "Version Control"],
   },
 ]
 
 const achievements = [
   {
-    icon: Award,
-    title: "50+ Projects Completed",
-    description: "Successfully delivered projects ranging from small business websites to enterprise applications.",
-  },
-  {
-    icon: Users,
-    title: "Team Leadership",
-    description: "Led cross-functional teams of 5+ developers, designers, and project managers.",
-  },
-  {
     icon: Code,
-    title: "Open Source Contributor",
-    description: "Active contributor to various open-source projects with 1000+ GitHub contributions.",
+    title: "20+ Projects Built",
+    description: "Created diverse projects ranging from simple websites to full-stack applications for learning and portfolio.",
   },
   {
     icon: Lightbulb,
-    title: "Innovation Focus",
-    description: "Constantly exploring new technologies and implementing cutting-edge solutions.",
+    title: "Continuous Learner",
+    description: "Always exploring new technologies and implementing modern development practices in personal projects.",
+  },
+  {
+    icon: Award,
+    title: "Self-Motivated",
+    description: "Successfully transitioned into web development through dedicated self-study and consistent practice.",
+  },
+  {
+    icon: Users,
+    title: "Community Engaged",
+    description: "Active in developer communities, learning from others and sharing knowledge through code repositories.",
   },
 ]
 
@@ -181,8 +181,7 @@ export default function AboutClient() {
           </div>
           <h1 className="font-serif font-black text-4xl sm:text-5xl text-foreground mb-4">About Siri Tech</h1>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto mb-8">
-            Passionate full-stack developer with 6+ years of experience creating innovative web solutions that make a
-            difference.
+            Passionate full-stack developer with 2+ years of experience building modern web applications and constantly learning new technologies.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <Button size="lg" asChild>
@@ -204,20 +203,13 @@ export default function AboutClient() {
             <h2 className="font-serif font-bold text-3xl text-foreground mb-6">My Story</h2>
             <div className="space-y-4 text-muted-foreground leading-relaxed">
               <p>
-                Hello! I&apos;m Siri Tech, a passionate full-stack web developer based in the heart of innovation. My journey
-                into web development began over 6 years ago when I discovered the power of code to transform ideas into
-                reality.
+                Hello! I&apos;m Siri Tech, a passionate full-stack web developer who discovered the world of programming 2+ years ago. My journey began with curiosity about how websites work, and it quickly turned into a deep passion for creating digital solutions.
               </p>
               <p>
-                I specialize in creating modern, scalable web applications using cutting-edge technologies like React,
-                Next.js, Django, and cloud platforms. My approach combines technical expertise with creative
-                problem-solving to deliver solutions that not only work flawlessly but also provide exceptional user
-                experiences.
+                I specialize in building modern web applications using technologies like React, Next.js, Django, and various databases. My approach focuses on writing clean, maintainable code while creating user-friendly interfaces that provide great experiences.
               </p>
               <p>
-                When I&apos;m not coding, you&apos;ll find me exploring new technologies, contributing to open-source projects, or
-                mentoring aspiring developers. I believe in the power of continuous learning and sharing knowledge with
-                the community.
+                As a self-taught developer, I&apos;ve learned the value of persistence, continuous learning, and hands-on practice. I&apos;m always working on personal projects, exploring new technologies, and looking for opportunities to grow and contribute to meaningful projects.
               </p>
             </div>
           </div>
@@ -227,19 +219,19 @@ export default function AboutClient() {
             <div className="space-y-4">
               <div className="flex items-center gap-3">
                 <MapPin className="h-5 w-5 text-primary" />
-                <span>Based in San Francisco, CA</span>
+                <span>Based in Delta State, Nigeria</span>
               </div>
               <div className="flex items-center gap-3">
                 <Calendar className="h-5 w-5 text-primary" />
-                <span>6+ Years of Experience</span>
+                <span>2+ Years of Development</span>
               </div>
               <div className="flex items-center gap-3">
                 <Code className="h-5 w-5 text-primary" />
-                <span>50+ Projects Completed</span>
+                <span>20+ Personal Projects</span>
               </div>
               <div className="flex items-center gap-3">
                 <Users className="h-5 w-5 text-primary" />
-                <span>Team Lead & Mentor</span>
+                <span>Self-Taught & Motivated</span>
               </div>
             </div>
 
@@ -253,8 +245,8 @@ export default function AboutClient() {
                   "Django",
                   "Python",
                   "PostgreSQL",
-                  "AWS",
-                  "Docker",
+                  "JavaScript",
+                  "HTML/CSS",
                   "Git",
                   "Tailwind CSS",
                 ].map((tech) => (
@@ -269,7 +261,7 @@ export default function AboutClient() {
 
         {/* Experience Timeline */}
         <div className="mb-20">
-          <h2 className="font-serif font-bold text-3xl text-foreground text-center mb-12">Professional Experience</h2>
+          <h2 className="font-serif font-bold text-3xl text-foreground text-center mb-12">Learning Journey</h2>
           <div ref={experienceRef} className="space-y-8">
             {experiences.map((exp, index) => (
               <Card key={index} className="relative">
@@ -297,7 +289,7 @@ export default function AboutClient() {
 
         {/* Achievements */}
         <div>
-          <h2 className="font-serif font-bold text-3xl text-foreground text-center mb-12">Key Achievements</h2>
+          <h2 className="font-serif font-bold text-3xl text-foreground text-center mb-12">Key Highlights</h2>
           <div ref={achievementsRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {achievements.map((achievement, index) => {
               const IconComponent = achievement.icon
