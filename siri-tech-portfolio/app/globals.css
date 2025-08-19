@@ -1,0 +1,112 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Light mode colors - using HSL values directly */
+  --background: 0 0% 100%; /* white */
+  --foreground: 210 11% 15%; /* #2c3e50 dark charcoal */
+  --card: 210 40% 96%; /* #f1f5f9 light gray */
+  --card-foreground: 210 11% 15%; /* #2c3e50 */
+  --popover: 0 0% 100%; /* white */
+  --popover-foreground: 210 11% 15%; /* #2c3e50 */
+  --primary: 210 11% 15%; /* #2c3e50 charcoal */
+  --primary-foreground: 0 0% 100%; /* white */
+  --secondary: 204 70% 53%; /* #3498db sky blue */
+  --secondary-foreground: 0 0% 100%; /* white */
+  --muted: 210 7% 56%; /* #bdc3c7 */
+  --muted-foreground: 210 11% 15%; /* #2c3e50 */
+  --accent: 204 70% 53%; /* #3498db sky blue */
+  --accent-foreground: 0 0% 100%; /* white */
+  --destructive: 0 65% 51%; /* #e74c3c red */
+  --destructive-foreground: 0 0% 100%; /* white */
+  --border: 210 7% 56%; /* #bdc3c7 */
+  --input: 210 40% 96%; /* #f1f5f9 */
+  --ring: 204 70% 53%; /* #3498db */
+  --chart-1: 0 65% 51%; /* #e74c3c */
+  --chart-2: 39 85% 59%; /* #f39c12 */
+  --chart-3: 145 63% 49%; /* #27ae60 */
+  --chart-4: 204 64% 44%; /* #2980b9 */
+  --chart-5: 283 39% 53%; /* #8e44ad */
+  --radius: 0.5rem;
+  --sidebar: 210 40% 96%; /* #f1f5f9 */
+  --sidebar-foreground: 210 11% 15%; /* #2c3e50 */
+  --sidebar-primary: 204 70% 53%; /* #3498db */
+  --sidebar-primary-foreground: 0 0% 100%; /* white */
+  --sidebar-accent: 210 7% 56%; /* #bdc3c7 */
+  --sidebar-accent-foreground: 210 11% 15%; /* #2c3e50 */
+  --sidebar-border: 210 7% 56%; /* #bdc3c7 */
+  --sidebar-ring: 204 70% 53%; /* #3498db */
+}
+
+.dark {
+  /* Dark mode colors - using HSL values */
+  --background: 210 11% 8%; /* dark charcoal */
+  --foreground: 0 0% 98%; /* light text */
+  --card: 210 11% 15%; /* darker card background */
+  --card-foreground: 0 0% 98%; /* light text on cards */
+  --popover: 210 11% 8%; /* dark popover */
+  --popover-foreground: 0 0% 98%; /* light popover text */
+  --primary: 204 70% 53%; /* sky blue primary in dark mode */
+  --primary-foreground: 0 0% 100%; /* white text on primary */
+  --secondary: 210 11% 20%; /* darker secondary */
+  --secondary-foreground: 0 0% 98%; /* light text on secondary */
+  --muted: 210 11% 20%; /* muted dark */
+  --muted-foreground: 0 0% 70%; /* muted text */
+  --accent: 204 70% 53%; /* sky blue accent */
+  --accent-foreground: 0 0% 100%; /* white text on accent */
+  --destructive: 0 65% 51%; /* red destructive */
+  --destructive-foreground: 0 0% 100%; /* white text on destructive */
+  --border: 210 11% 20%; /* dark border */
+  --input: 210 11% 20%; /* dark input */
+  --ring: 204 70% 53%; /* sky blue ring */
+  --chart-1: 0 65% 51%;
+  --chart-2: 39 85% 59%;
+  --chart-3: 145 63% 49%;
+  --chart-4: 204 64% 44%;
+  --chart-5: 283 39% 53%;
+  --sidebar: 210 11% 15%;
+  --sidebar-foreground: 0 0% 98%;
+  --sidebar-primary: 204 70% 53%;
+  --sidebar-primary-foreground: 0 0% 100%;
+  --sidebar-accent: 210 11% 20%;
+  --sidebar-accent-foreground: 0 0% 98%;
+  --sidebar-border: 210 11% 20%;
+  --sidebar-ring: 204 70% 53%;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+@layer utilities {
+  .bg-grid-pattern {
+    background-image: radial-gradient(circle, rgba(44, 62, 80, 0.1) 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
+}
+
+/* Smooth scroll behavior */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom animations */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
