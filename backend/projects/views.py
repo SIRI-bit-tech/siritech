@@ -35,7 +35,7 @@ class ProjectDetailView(generics.RetrieveAPIView):
 def featured_projects(request):
     """Get featured projects for homepage"""
     projects = Project.objects.filter(featured=True)[:3]
-    serializer = ProjectListSerializer(projects, many=True)
+    serializer = ProjectListSerializer(projects, many=True, context={'request': request})  # ← Added context
     return Response(serializer.data)
 
 
