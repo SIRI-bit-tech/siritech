@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'corsheaders',
     'projects',
-    'compressor',
+    # 'compressor',  # Removed - not needed for API backend
     'cloudinary_storage',
     'cloudinary',
 ]
@@ -160,23 +160,19 @@ else:
     STATIC_ROOT = BASE_DIR / 'staticfiles'
     MEDIA_URL = '/media/'
     MEDIA_ROOT = BASE_DIR / 'media'
+    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
+# Removed compressor-related settings since compressor is not installed
 STATICFILES_FINDERS = [
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-    'compressor.finders.CompressorFinder',
+    # 'compressor.finders.CompressorFinder',  # Removed - compressor not installed
 ]
 
-COMPRESS_ENABLED = not DEBUG
-COMPRESS_CSS_FILTERS = [
-    'compressor.filters.css_default.CssAbsoluteFilter',
-    'compressor.filters.cssmin.rCSSMinFilter',
-]
-COMPRESS_JS_FILTERS = [
-    'compressor.filters.jsmin.JSMinFilter',
-]
-
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+# Removed all COMPRESS_* settings since compressor is not being used
+# COMPRESS_ENABLED = not DEBUG
+# COMPRESS_CSS_FILTERS = [...]
+# COMPRESS_JS_FILTERS = [...]
 
 # Default primary key field type
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
