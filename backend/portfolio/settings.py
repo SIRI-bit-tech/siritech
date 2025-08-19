@@ -120,6 +120,12 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_TZ = True
 
+# Static files configuration - Always set STATIC_ROOT regardless of Cloudinary usage
+STATIC_URL = '/static/'
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
+
 USE_CLOUDINARY = env('USE_CLOUDINARY')
 
 if USE_CLOUDINARY:
@@ -135,13 +141,11 @@ if USE_CLOUDINARY:
         secure=True
     )
     
-    # Static files
+    # Use Cloudinary for static files
     STATICFILES_STORAGE = 'cloudinary_storage.storage.StaticHashedCloudinaryStorage'
-    STATIC_URL = '/static/'
     
-    # Media files
+    # Use Cloudinary for media files
     DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
-    MEDIA_URL = '/media/'
     
     # Cloudinary settings
     CLOUDINARY_STORAGE = {
@@ -155,11 +159,7 @@ if USE_CLOUDINARY:
         'STATIC_TAG': 'static',
     }
 else:
-    # Local static files configuration
-    STATIC_URL = '/static/'
-    STATIC_ROOT = BASE_DIR / 'staticfiles'
-    MEDIA_URL = '/media/'
-    MEDIA_ROOT = BASE_DIR / 'media'
+    # Use WhiteNoise for static files when not using Cloudinary
     STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Removed compressor-related settings since compressor is not installed
