@@ -1,5 +1,6 @@
 from django.db import models
 from django.core.validators import URLValidator
+from cloudinary.models import CloudinaryField
 
 
 class Project(models.Model):
@@ -27,13 +28,8 @@ class Project(models.Model):
         help_text="Live project URL"
     )
     
-    # Image
-    image = models.ImageField(
-        upload_to='projects/',
-        blank=True,
-        null=True,
-        help_text="Project screenshot or image"
-    )
+    # Image (Cloudinary)
+    image = CloudinaryField("image", blank=True, null=True)
     
     # Technologies used
     technologies = models.CharField(
@@ -78,10 +74,9 @@ class Resume(models.Model):
         default="Resume",
         help_text="Resume title/version"
     )
-    file = models.FileField(
-        upload_to='resume/',
-        help_text="Upload PDF resume file"
-    )
+    # Store resume on Cloudinary
+    file = CloudinaryField("resume", resource_type="raw")
+    
     uploaded_at = models.DateTimeField(auto_now_add=True)
     is_active = models.BooleanField(
         default=True,

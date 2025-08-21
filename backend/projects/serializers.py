@@ -1,6 +1,5 @@
 from rest_framework import serializers
 from .models import Project
-from django.conf import settings
 
 
 class ProjectSerializer(serializers.ModelSerializer):
@@ -9,12 +8,7 @@ class ProjectSerializer(serializers.ModelSerializer):
     
     def get_image(self, obj):
         if obj.image:
-            url = obj.image.url
-            if url.startswith('/'):
-                request = self.context.get('request')
-                if request:
-                    return request.build_absolute_uri(url)
-            return url
+            return obj.image.url  # Cloudinary auto generates full URL
         return None
     
     class Meta:
@@ -43,12 +37,7 @@ class ProjectListSerializer(serializers.ModelSerializer):
     
     def get_image(self, obj):
         if obj.image:
-            url = obj.image.url
-            if url.startswith('/'):
-                request = self.context.get('request')
-                if request:
-                    return request.build_absolute_uri(url)
-            return url
+            return obj.image.url
         return None
     
     class Meta:
