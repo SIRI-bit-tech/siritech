@@ -8,7 +8,12 @@ const nextConfig = {
   },
   images: {
     unoptimized: false,
-    domains: ['localhost', '127.0.0.1', 'siritech.onrender.com'],
+    domains: [
+      'localhost',
+      '127.0.0.1',
+      'siritech.onrender.com',
+      'res.cloudinary.com',   // ✅ Cloudinary added here
+    ],
     formats: ['image/webp', 'image/avif'],
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
@@ -17,6 +22,11 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'siritech.onrender.com',
         pathname: '/media/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'res.cloudinary.com', // ✅ Allow all Cloudinary image paths
+        pathname: '/**',
       },
     ],
   },
