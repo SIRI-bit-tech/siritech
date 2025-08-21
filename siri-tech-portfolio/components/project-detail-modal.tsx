@@ -41,6 +41,16 @@ export default function ProjectDetailModal({ project, isOpen, onClose }: Project
 
   if (!project) return null
 
+  const getImageUrl = (imagePath: string) => {
+    if (!imagePath) return "/placeholder.svg"
+    if (imagePath.startsWith("http")) return imagePath
+    const backendUrl =
+      process.env.NEXT_PUBLIC_BACKEND_URL ||
+      (process.env.NEXT_PUBLIC_API_URL ? process.env.NEXT_PUBLIC_API_URL.replace(/\/api\/?$/, "") : undefined) ||
+      "http://localhost:8000"
+    return `${backendUrl}${imagePath}`
+  }
+
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
@@ -61,7 +71,7 @@ export default function ProjectDetailModal({ project, isOpen, onClose }: Project
             {/* Project Image */}
             {project.image && (
               <div className="relative h-64 sm:h-80 rounded-lg overflow-hidden">
-                <Image src={project.image || "/placeholder.svg"} alt={project.title} fill className="object-cover" />
+                <Image src={getImageUrl(project.image)} alt={project.title} fill className="object-cover" />
               </div>
             )}
 

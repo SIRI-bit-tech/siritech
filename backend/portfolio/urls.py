@@ -11,6 +11,6 @@ urlpatterns = [
     path('api/', include('projects.urls')),
 ]
 
-# Serve media files during development
-if settings.DEBUG:
+# Serve media files when not using Cloudinary storage
+if not getattr(settings, 'USE_CLOUDINARY', False):
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
