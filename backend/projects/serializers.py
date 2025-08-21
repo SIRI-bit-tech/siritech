@@ -4,23 +4,17 @@ from django.conf import settings
 
 
 class ProjectSerializer(serializers.ModelSerializer):
-    """Serializer for Project model"""
-    
     technology_list = serializers.ReadOnlyField()
     image = serializers.SerializerMethodField()
     
     def get_image(self, obj):
-        """Return full image URL"""
         if obj.image:
-            # If using Cloudinary, the URL is already absolute
-            if getattr(settings, 'USE_CLOUDINARY', False):
-                return obj.image.url
-            else:
-                # For local storage, build absolute URI
+            url = obj.image.url
+            if url.startswith('/'):
                 request = self.context.get('request')
                 if request:
-                    return request.build_absolute_uri(obj.image.url)
-                return obj.image.url
+                    return request.build_absolute_uri(url)
+            return url
         return None
     
     class Meta:
@@ -44,23 +38,17 @@ class ProjectSerializer(serializers.ModelSerializer):
 
 
 class ProjectListSerializer(serializers.ModelSerializer):
-    """Lightweight serializer for project lists"""
-    
     technology_list = serializers.ReadOnlyField()
     image = serializers.SerializerMethodField()
     
     def get_image(self, obj):
-        """Return full image URL"""
         if obj.image:
-            # If using Cloudinary, the URL is already absolute
-            if getattr(settings, 'USE_CLOUDINARY', False):
-                return obj.image.url
-            else:
-                # For local storage, build absolute URI
+            url = obj.image.url
+            if url.startswith('/'):
                 request = self.context.get('request')
                 if request:
-                    return request.build_absolute_uri(obj.image.url)
-                return obj.image.url
+                    return request.build_absolute_uri(url)
+            return url
         return None
     
     class Meta:

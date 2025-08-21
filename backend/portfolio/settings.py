@@ -8,7 +8,6 @@ import os
 
 env = environ.Env(
     DEBUG=(bool, False),
-    USE_CLOUDINARY=(bool, False),
     SECURE_SSL_REDIRECT=(bool, False),
     SECURE_HSTS_SECONDS=(int, 0),
     SECURE_HSTS_INCLUDE_SUBDOMAINS=(bool, False),
@@ -41,7 +40,6 @@ INSTALLED_APPS = [
     'rest_framework',
     'corsheaders',
     'projects',
-    # 'compressor',  # Removed - not needed for API backend
     'cloudinary_storage',
     'cloudinary',
 ]
@@ -120,59 +118,46 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_TZ = True
 
-# Static files configuration - Always set STATIC_ROOT regardless of Cloudinary usage
+# Static files configuration
 STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
+
+# Media files configuration - default for local development
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
-USE_CLOUDINARY = env('USE_CLOUDINARY')
+# Cloudinary Configuration for production
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
 
-if USE_CLOUDINARY:
-    # Cloudinary Configuration
-    import cloudinary
-    import cloudinary.uploader
-    import cloudinary.api
-    
-    cloudinary.config(
-        cloud_name=env('CLOUDINARY_CLOUD_NAME'),
-        api_key=env('CLOUDINARY_API_KEY'),
-        api_secret=env('CLOUDINARY_API_SECRET'),
-        secure=True
-    )
-    
-    # Use Cloudinary for static files
-    STATICFILES_STORAGE = 'cloudinary_storage.storage.StaticHashedCloudinaryStorage'
-    
-    # Use Cloudinary for media files
-    DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
-    
-    # Cloudinary settings
-    CLOUDINARY_STORAGE = {
-        'CLOUD_NAME': env('CLOUDINARY_CLOUD_NAME'),
-        'API_KEY': env('CLOUDINARY_API_KEY'),
-        'API_SECRET': env('CLOUDINARY_API_SECRET'),
-        'SECURE': True,
-        'MEDIA_TAG': 'media',
-        'INVALID_VIDEO_ERROR_MESSAGE': 'Please upload a valid video file.',
-        'EXCLUDE_DELETE_ORPHANED_MEDIA_PATHS': (),
-        'STATIC_TAG': 'static',
-    }
-else:
-    # Use WhiteNoise for static files when not using Cloudinary
-    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+cloudinary.config(
+    cloud_name=env('CLOUDINARY_CLOUD_NAME'),
+    api_key=env('CLOUDINARY_API_KEY'),
+    api_secret=env('CLOUDINARY_API_SECRET'),
+    secure=True
+)
 
-# Removed compressor-related settings since compressor is not installed
+# Use Cloudinary for media files always
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+STATICFILES_STORAGE = 'cloudinary_storage.storage.StaticHashedCloudinaryStorage'
+
+# Cloudinary settings
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': env('CLOUDINARY_CLOUD_NAME'),
+    'API_KEY': env('CLOUDINARY_API_KEY'),
+    'API_SECRET': env('CLOUDINARY_API_SECRET'),
+    'SECURE': True,
+    'MEDIA_TAG': 'media',
+    'INVALID_VIDEO_ERROR_MESSAGE': 'Please upload a valid video file.',
+    'EXCLUDE_DELETE_ORPHANED_MEDIA_PATHS': (),
+    'STATIC_TAG': 'static',
+}
+
 STATICFILES_FINDERS = [
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-    # 'compressor.finders.CompressorFinder',  # Removed - compressor not installed
 ]
-
-# Removed all COMPRESS_* settings since compressor is not being used
-# COMPRESS_ENABLED = not DEBUG
-# COMPRESS_CSS_FILTERS = [...]
-# COMPRESS_JS_FILTERS = [...]
 
 # Default primary key field type
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
